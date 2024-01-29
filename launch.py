@@ -7,7 +7,7 @@ import sys
 import time
 import traceback
 
-
+DEBUG = True
 class ColoredFilter(logging.Filter):
     """
     A logging filter to add color to certain log levels.
@@ -68,9 +68,15 @@ def load_custom_module(module_path):
 
 
 def load_custom_modules():
+    if DEBUG:
+        print("loading custom modules")
+
+
     node_paths = ["custom"]
     node_import_times = []
     for custom_node_path in node_paths:
+        if DEBUG:
+            print("custom node path", custom_node_path)
         possible_modules = os.listdir(custom_node_path)
         if "__pycache__" in possible_modules:
             possible_modules.remove("__pycache__")
@@ -98,7 +104,7 @@ def load_custom_modules():
             else:
                 import_message = " (IMPORT FAILED)"
             print("{:6.1f} seconds{}:".format(n[0], import_message), n[1])
-        print()
+
 
 
 def main(args, extras) -> None:
@@ -292,6 +298,8 @@ if __name__ == "__main__":
     )
 
     args, extras = parser.parse_known_args()
+
+
 
     if args.gradio:
         # FIXME: no effect, stdout is not captured
