@@ -69,14 +69,14 @@ def load_custom_module(module_path):
 
 def load_custom_modules():
     if DEBUG:
-        print("loading custom modules")
+        print("\n\n\n\n******loading custom modules")
 
 
     node_paths = ["custom"]
     node_import_times = []
     for custom_node_path in node_paths:
         if DEBUG:
-            print("custom node path", custom_node_path)
+            print("\n\n\n\n*******custom node path", custom_node_path)
         possible_modules = os.listdir(custom_node_path)
         if "__pycache__" in possible_modules:
             possible_modules.remove("__pycache__")
