@@ -58,6 +58,8 @@ def load_custom_module(module_path):
             )
 
         module = importlib.util.module_from_spec(module_spec)
+        if DEBUG:
+            print('\n\n\n\n\n\n ******** module spec :' , module_spec, "module_name:", module_name , "module:", module)
         sys.modules[module_name] = module
         module_spec.loader.exec_module(module)
         return True
@@ -82,6 +84,10 @@ def load_custom_modules():
             possible_modules.remove("__pycache__")
 
         for possible_module in possible_modules:
+
+            if DEBUG:
+                print("\n\n\n\n*******possible modules", possible_module)
+
             module_path = os.path.join(custom_node_path, possible_module)
             if (
                 os.path.isfile(module_path)
